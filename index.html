@@ -1,0 +1,2122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>B.M.T | Business Market Tanzania</title>
+
+<style>
+
+/* =========================
+   B.M.T GLOBAL
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+:root{
+    --primary:#0b63f6;
+    --dark:#101828;
+    --green:#12b76a;
+    --orange:#f79009;
+    --light:#f4f7fb;
+    --white:#ffffff;
+    --danger:#f04438;
+    --border:#e4e7ec;
+}
+
+body{
+    background:var(--light);
+    color:#172033;
+}
+
+button,
+input,
+select,
+textarea{
+    font-family:inherit;
+}
+
+/* =========================
+   APP
+========================= */
+
+.app{
+    display:flex;
+    min-height:100vh;
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar{
+    width:260px;
+    background:#0b1220;
+    color:white;
+    position:fixed;
+    height:100vh;
+    left:0;
+    top:0;
+    padding:25px 18px;
+    z-index:1000;
+    overflow-y:auto;
+}
+
+.logo{
+    font-size:30px;
+    font-weight:900;
+    margin-bottom:5px;
+}
+
+.logo span{
+    color:#0b63f6;
+}
+
+.tagline{
+    font-size:11px;
+    color:#98a2b3;
+    margin-bottom:30px;
+    letter-spacing:1px;
+}
+
+.nav-item{
+    padding:14px 15px;
+    margin:6px 0;
+    border-radius:10px;
+    cursor:pointer;
+    color:#d0d5dd;
+    transition:.3s;
+}
+
+.nav-item:hover,
+.nav-item.active{
+    background:#0b63f6;
+    color:white;
+}
+
+.nav-item i{
+    margin-right:10px;
+}
+
+/* =========================
+   MAIN
+========================= */
+
+.main{
+    margin-left:260px;
+    width:calc(100% - 260px);
+    min-height:100vh;
+}
+
+.topbar{
+    height:75px;
+    background:white;
+    border-bottom:1px solid var(--border);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 30px;
+    position:sticky;
+    top:0;
+    z-index:500;
+}
+
+.search{
+    width:400px;
+    padding:13px 20px;
+    border:1px solid var(--border);
+    border-radius:30px;
+    outline:none;
+    background:#f9fafb;
+}
+
+.search:focus{
+    border-color:var(--primary);
+    background:white;
+}
+
+.profile-mini{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.avatar{
+    width:43px;
+    height:43px;
+    border-radius:50%;
+    background:var(--primary);
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:bold;
+}
+
+.content{
+    padding:30px;
+}
+
+.page{
+    display:none;
+}
+
+.page.active{
+    display:block;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    background:linear-gradient(135deg,#0b63f6,#063b9c);
+    color:white;
+    padding:42px;
+    border-radius:20px;
+    margin-bottom:25px;
+    position:relative;
+    overflow:hidden;
+    box-shadow:0 15px 35px rgba(11,99,246,.15);
+}
+
+.hero:after{
+    content:"";
+    width:250px;
+    height:250px;
+    border-radius:50%;
+    background:rgba(255,255,255,.08);
+    position:absolute;
+    right:-80px;
+    top:-80px;
+}
+
+.hero h1{
+    font-size:36px;
+    margin-bottom:12px;
+    position:relative;
+    z-index:2;
+}
+
+.hero p{
+    color:#eaf2ff;
+    max-width:750px;
+    line-height:1.7;
+    position:relative;
+    z-index:2;
+}
+
+.hero button{
+    margin-top:20px;
+    position:relative;
+    z-index:2;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.btn{
+    border:none;
+    padding:13px 21px;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.btn-primary{
+    background:var(--primary);
+    color:white;
+}
+
+.btn-primary:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 20px rgba(11,99,246,.25);
+}
+
+.btn-white{
+    background:white;
+    color:var(--primary);
+}
+
+.btn-white:hover{
+    transform:translateY(-2px);
+}
+
+.btn-green{
+    background:var(--green);
+    color:white;
+}
+
+/* =========================
+   STATS
+========================= */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+    margin-bottom:25px;
+}
+
+.stat{
+    background:white;
+    padding:23px;
+    border-radius:16px;
+    border:1px solid var(--border);
+    transition:.3s;
+}
+
+.stat:hover{
+    transform:translateY(-3px);
+    box-shadow:0 10px 25px rgba(16,24,40,.08);
+}
+
+.stat-title{
+    color:#667085;
+    font-size:14px;
+    margin-top:8px;
+}
+
+.stat-value{
+    font-size:30px;
+    font-weight:800;
+    margin-top:8px;
+}
+
+.stat-icon{
+    font-size:25px;
+}
+
+/* =========================
+   CARDS
+========================= */
+
+.card{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:24px;
+    margin-bottom:20px;
+}
+
+.card h2{
+    margin-bottom:8px;
+}
+
+.card p{
+    line-height:1.6;
+    color:#667085;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+/* =========================
+   BUSINESS CARDS
+========================= */
+
+.business-card{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:16px;
+    overflow:hidden;
+    transition:.3s;
+}
+
+.business-card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 15px 35px rgba(16,24,40,.1);
+}
+
+.business-image{
+    height:150px;
+    background:linear-gradient(135deg,#0b63f6,#12b76a);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white;
+    font-size:45px;
+}
+
+.business-info{
+    padding:18px;
+}
+
+.business-info h3{
+    margin-bottom:7px;
+}
+
+.business-info p{
+    margin:7px 0;
+}
+
+.category{
+    font-size:13px;
+    color:#667085;
+}
+
+.status{
+    display:inline-block;
+    margin-top:10px;
+    padding:5px 10px;
+    border-radius:20px;
+    background:#ecfdf3;
+    color:#027a48;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.top-badge{
+    background:#fff4cc;
+    color:#9b6700;
+    padding:5px 9px;
+    border-radius:20px;
+    font-size:11px;
+    font-weight:bold;
+    display:inline-block;
+    margin-left:5px;
+}
+
+/* =========================
+   FREE PROMOTION
+========================= */
+
+.free-box{
+    background:linear-gradient(135deg,#ecfdf3,#f0fdf4);
+    border:2px solid #12b76a;
+    border-radius:20px;
+    padding:30px;
+    text-align:center;
+}
+
+.free-price{
+    font-size:45px;
+    font-weight:900;
+    color:#027a48;
+    margin:15px 0;
+}
+
+.free-list{
+    list-style:none;
+    margin:20px 0;
+    text-align:left;
+    display:inline-block;
+}
+
+.free-list li{
+    margin:10px 0;
+    color:#344054;
+}
+
+/* =========================
+   FORMS
+========================= */
+
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+}
+
+.form-group{
+    margin-bottom:15px;
+}
+
+.form-group label{
+    display:block;
+    margin-bottom:7px;
+    font-weight:bold;
+    font-size:14px;
+}
+
+.form-control{
+    width:100%;
+    padding:13px;
+    border:1px solid var(--border);
+    border-radius:10px;
+    outline:none;
+    background:white;
+}
+
+.form-control:focus{
+    border-color:var(--primary);
+}
+
+/* =========================
+   ALERT
+========================= */
+
+.alert{
+    padding:15px;
+    border-radius:10px;
+    background:#eff8ff;
+    color:#175cd3;
+    margin-bottom:20px;
+    line-height:1.7;
+}
+
+/* =========================
+   TABLE
+========================= */
+
+.table-container{
+    width:100%;
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th,
+td{
+    padding:15px;
+    text-align:left;
+    border-bottom:1px solid var(--border);
+    white-space:nowrap;
+}
+
+th{
+    background:#f8fafc;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.bmt-footer{
+    margin-top:50px;
+    padding:45px 20px;
+    background:#0b1220;
+    color:white;
+    text-align:center;
+    border-top:4px solid #0b63f6;
+}
+
+.footer-logo{
+    font-size:32px;
+    font-weight:900;
+    margin-bottom:8px;
+}
+
+.footer-logo span{
+    color:#0b63f6;
+}
+
+.bmt-footer p{
+    color:#98a2b3;
+    margin:8px 0;
+}
+
+.footer-contact{
+    margin:22px 0;
+    font-size:20px;
+    font-weight:bold;
+}
+
+.footer-contact a{
+    color:white;
+    text-decoration:none;
+}
+
+.footer-contact a:hover{
+    color:#0b63f6;
+}
+
+.created{
+    color:#d0d5dd !important;
+    font-weight:bold;
+    margin-top:22px !important;
+}
+
+.copyright{
+    font-size:12px;
+    margin-top:20px !important;
+}
+
+/* =========================
+   MOBILE MENU
+========================= */
+
+.mobile-menu{
+    display:none;
+    font-size:25px;
+    cursor:pointer;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:1000px){
+
+    .sidebar{
+        transform:translateX(-100%);
+        transition:.3s;
+    }
+
+    .sidebar.show{
+        transform:translateX(0);
+    }
+
+    .main{
+        margin-left:0;
+        width:100%;
+    }
+
+    .mobile-menu{
+        display:block;
+    }
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:650px){
+
+    .topbar{
+        padding:0 15px;
+    }
+
+    .search{
+        display:none;
+    }
+
+    .content{
+        padding:15px;
+    }
+
+    .hero{
+        padding:25px;
+    }
+
+    .hero h1{
+        font-size:27px;
+    }
+
+    .stats,
+    .grid,
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .topbar{
+        height:65px;
+    }
+
+    .profile-mini{
+        font-size:12px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<!-- =========================
+     SIDEBAR
+========================= -->
+
+<aside class="sidebar" id="sidebar">
+
+    <div class="logo">
+        B.<span>M.T</span>
+    </div>
+
+    <div class="tagline">
+        BUSINESS MARKET TANZANIA
+    </div>
+
+    <div class="nav-item active"
+         onclick="showPage('dashboard',this)">
+        📊 Dashboard
+    </div>
+
+    <div class="nav-item"
+         onclick="showPage('account',this)">
+        👤 Account
+    </div>
+
+    <div class="nav-item"
+         onclick="showPage('categories',this)">
+        🏢 Business Category
+    </div>
+
+    <div class="nav-item"
+         onclick="showPage('status',this)">
+        🟢 Business Status
+    </div>
+
+    <div class="nav-item"
+         onclick="showPage('promotion',this)">
+        🚀 Promotion Your Business
+    </div>
+
+    <div class="nav-item"
+         onclick="showPage('profile',this)">
+        👤 Profile
+    </div>
+
+    <div class="nav-item"
+         onclick="showPage('top',this)">
+        ⭐ Top Business
+    </div>
+
+    <div class="nav-item"
+         onclick="showPage('records',this)">
+        📋 Business Record
+    </div>
+
+</aside>
+
+
+<!-- =========================
+     MAIN
+========================= -->
+
+<main class="main">
+
+<header class="topbar">
+
+    <div class="mobile-menu"
+         onclick="toggleSidebar()">
+        ☰
+    </div>
+
+    <input
+        class="search"
+        id="searchBox"
+        placeholder="🔎 Search businesses..."
+        onkeyup="searchBusiness()">
+
+    <div class="profile-mini">
+
+        <div>
+            <strong id="userName">
+                B.M.T User
+            </strong>
+
+            <br>
+
+            <small>
+                Business Owner
+            </small>
+        </div>
+
+        <div class="avatar">
+            B
+        </div>
+
+    </div>
+
+</header>
+
+
+<div class="content">
+
+
+<!-- =========================
+     DASHBOARD
+========================= -->
+
+<section id="dashboard"
+         class="page active">
+
+    <div class="hero">
+
+        <h1>
+            Welcome to B.M.T 🚀
+        </h1>
+
+        <p>
+            Business Market Tanzania is a free professional
+            platform designed to help businesses become visible,
+            discover customers and grow their digital presence
+            across Tanzania.
+        </p>
+
+        <button class="btn btn-white"
+                onclick="showPage('account',null)">
+            + Add My Business FREE
+        </button>
+
+    </div>
+
+
+    <div class="stats">
+
+        <div class="stat">
+
+            <div class="stat-icon">
+                🏢
+            </div>
+
+            <div class="stat-title">
+                Registered Businesses
+            </div>
+
+            <div class="stat-value"
+                 id="businessCount">
+                0
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-icon">
+                ⭐
+            </div>
+
+            <div class="stat-title">
+                Top Businesses
+            </div>
+
+            <div class="stat-value"
+                 id="topCount">
+                0
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-icon">
+                🚀
+            </div>
+
+            <div class="stat-title">
+                Free Listings
+            </div>
+
+            <div class="stat-value"
+                 id="promotionCount">
+                0
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-icon">
+                👁️
+            </div>
+
+            <div class="stat-title">
+                Business Views
+            </div>
+
+            <div class="stat-value">
+                1,240
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>
+            🌍 Grow Your Business With B.M.T
+        </h2>
+
+        <p>
+            Register your business for FREE and make your
+            business easier for customers to discover.
+        </p>
+
+        <br>
+
+        <button class="btn btn-primary"
+                onclick="showPage('account',null)">
+            + Register Business Free
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     ACCOUNT
+========================= -->
+
+<section id="account"
+         class="page">
+
+    <div class="card">
+
+        <h2>
+            👤 Business Account
+        </h2>
+
+        <p>
+            Create your B.M.T business profile completely free.
+        </p>
+
+        <br>
+
+        <div class="form-grid">
+
+            <div class="form-group">
+
+                <label>
+                    Business Name
+                </label>
+
+                <input
+                    class="form-control"
+                    id="businessName"
+                    placeholder="Example: B.M.T Fashion">
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Owner Name
+                </label>
+
+                <input
+                    class="form-control"
+                    id="ownerName"
+                    placeholder="Your name">
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Phone Number
+                </label>
+
+                <input
+                    class="form-control"
+                    id="businessPhone"
+                    placeholder="+255 7XX XXX XXX">
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Business Category
+                </label>
+
+                <select
+                    class="form-control"
+                    id="businessCategory">
+
+                    <option>
+                        Restaurant & Food
+                    </option>
+
+                    <option>
+                        Fashion & Clothing
+                    </option>
+
+                    <option>
+                        Technology
+                    </option>
+
+                    <option>
+                        Construction
+                    </option>
+
+                    <option>
+                        Transport
+                    </option>
+
+                    <option>
+                        Beauty & Salon
+                    </option>
+
+                    <option>
+                        Education
+                    </option>
+
+                    <option>
+                        Real Estate
+                    </option>
+
+                    <option>
+                        Finance
+                    </option>
+
+                    <option>
+                        Agriculture
+                    </option>
+
+                    <option>
+                        Other
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Location
+                </label>
+
+                <input
+                    class="form-control"
+                    id="businessLocation"
+                    placeholder="Mwanza, Dar es Salaam, Arusha...">
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Business Status
+                </label>
+
+                <select
+                    class="form-control"
+                    id="businessStatus">
+
+                    <option>
+                        Active
+                    </option>
+
+                    <option>
+                        Closed
+                    </option>
+
+                    <option>
+                        Temporarily Closed
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Business Description
+            </label>
+
+            <textarea
+                class="form-control"
+                id="businessDescription"
+                rows="5"
+                placeholder="Describe your business..."></textarea>
+
+        </div>
+
+
+        <button
+            class="btn btn-primary"
+            onclick="saveBusiness()">
+
+            Create Business Account — FREE
+
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CATEGORIES
+========================= -->
+
+<section id="categories"
+         class="page">
+
+    <div class="hero">
+
+        <h1>
+            🏢 Business Categories
+        </h1>
+
+        <p>
+            Find and discover businesses by category.
+        </p>
+
+    </div>
+
+
+    <div class="grid">
+
+
+        <div class="business-card">
+
+            <div class="business-image">
+                🍔
+            </div>
+
+            <div class="business-info">
+
+                <h3>
+                    Restaurant & Food
+                </h3>
+
+                <p class="category">
+                    Restaurants, food suppliers and catering.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="business-card">
+
+            <div class="business-image">
+                👕
+            </div>
+
+            <div class="business-info">
+
+                <h3>
+                    Fashion
+                </h3>
+
+                <p class="category">
+                    Clothes, shoes and fashion businesses.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="business-card">
+
+            <div class="business-image">
+                💻
+            </div>
+
+            <div class="business-info">
+
+                <h3>
+                    Technology
+                </h3>
+
+                <p class="category">
+                    IT companies and digital services.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="business-card">
+
+            <div class="business-image">
+                🏠
+            </div>
+
+            <div class="business-info">
+
+                <h3>
+                    Real Estate
+                </h3>
+
+                <p class="category">
+                    Houses, land and property.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="business-card">
+
+            <div class="business-image">
+                💄
+            </div>
+
+            <div class="business-info">
+
+                <h3>
+                    Beauty
+                </h3>
+
+                <p class="category">
+                    Salons, cosmetics and beauty services.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="business-card">
+
+            <div class="business-image">
+                🚗
+            </div>
+
+            <div class="business-info">
+
+                <h3>
+                    Transport
+                </h3>
+
+                <p class="category">
+                    Transport and logistics.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     STATUS
+========================= -->
+
+<section id="status"
+         class="page">
+
+    <div class="card">
+
+        <h2>
+            🟢 Business Status
+        </h2>
+
+        <br>
+
+        <div class="alert">
+
+            Your business status shows customers
+            whether your business is currently available.
+
+        </div>
+
+
+        <select
+            class="form-control"
+            id="statusSelect"
+            onchange="updateStatus()">
+
+            <option>
+                🟢 Active
+            </option>
+
+            <option>
+                🔴 Closed
+            </option>
+
+            <option>
+                🟡 Temporarily Closed
+            </option>
+
+        </select>
+
+
+        <br>
+
+        <h3 id="currentStatus">
+            Current Status: 🟢 Active
+        </h3>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FREE PROMOTION
+========================= -->
+
+<section id="promotion"
+         class="page">
+
+    <div class="hero">
+
+        <h1>
+            🚀 Promote Your Business
+        </h1>
+
+        <p>
+            B.M.T now allows businesses to list their
+            businesses for FREE.
+        </p>
+
+        <button
+            class="btn btn-white"
+            onclick="showPage('account',null)">
+
+            + Add My Business FREE
+
+        </button>
+
+    </div>
+
+
+    <div class="free-box">
+
+        <h2>
+            🎉 B.M.T FREE BUSINESS LISTING
+        </h2>
+
+        <div class="free-price">
+            FREE
+        </div>
+
+        <p>
+            No payment required.
+        </p>
+
+
+        <ul class="free-list">
+
+            <li>
+                ✅ Business Listing — FREE
+            </li>
+
+            <li>
+                ✅ Business Profile — FREE
+            </li>
+
+            <li>
+                ✅ Business Category — FREE
+            </li>
+
+            <li>
+                ✅ Business Status — FREE
+            </li>
+
+            <li>
+                ✅ Business Record — FREE
+            </li>
+
+            <li>
+                ✅ Search Visibility — FREE
+            </li>
+
+            <li>
+                ✅ Business Promotion — FREE
+            </li>
+
+        </ul>
+
+
+        <br>
+
+        <button
+            class="btn btn-green"
+            onclick="showPage('account',null)">
+
+            Register Business FREE
+
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     PROFILE
+========================= -->
+
+<section id="profile"
+         class="page">
+
+    <div class="card">
+
+        <h2>
+            👤 My Profile
+        </h2>
+
+        <br>
+
+        <div class="avatar">
+            B
+        </div>
+
+        <br>
+
+        <h3 id="profileBusiness">
+            No business registered
+        </h3>
+
+        <p id="profileOwner">
+            Business owner
+        </p>
+
+        <p id="profilePhone">
+            Phone not added
+        </p>
+
+        <br>
+
+        <button
+            class="btn btn-primary"
+            onclick="showPage('account',null)">
+
+            Edit Business Profile
+
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     TOP BUSINESS
+========================= -->
+
+<section id="top"
+         class="page">
+
+    <div class="hero">
+
+        <h1>
+            ⭐ TOP BUSINESS
+        </h1>
+
+        <p>
+            Discover businesses listed on B.M.T.
+        </p>
+
+    </div>
+
+
+    <div id="topBusinesses"
+         class="grid">
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     BUSINESS RECORD
+========================= -->
+
+<section id="records"
+         class="page">
+
+    <div class="card">
+
+        <h2>
+            📋 Business Record
+        </h2>
+
+        <br>
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Business
+                        </th>
+
+                        <th>
+                            Category
+                        </th>
+
+                        <th>
+                            Location
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                        <th>
+                            Promotion
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="recordTable">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer class="bmt-footer">
+
+    <div class="footer-logo">
+        B.<span>M.T</span>
+    </div>
+
+    <p>
+        Business Market Tanzania
+    </p>
+
+    <p>
+        Connect • Discover • Grow
+    </p>
+
+    <div class="footer-contact">
+
+        📞
+
+        <a href="tel:+2556195317">
+            +255 619 5317
+        </a>
+
+    </div>
+
+    <p class="created">
+        Website created by B.M.T
+    </p>
+
+    <p class="copyright">
+        © 2026 B.M.T — Business Market Tanzania
+    </p>
+
+</footer>
+
+
+</div>
+
+</main>
+
+</div>
+
+
+<script>
+
+/* =========================
+   DATA
+========================= */
+
+let businesses =
+JSON.parse(
+    localStorage.getItem("bmtBusinesses")
+) || [];
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+function showPage(page, element){
+
+    document
+        .querySelectorAll(".page")
+        .forEach(function(p){
+
+            p.classList.remove("active");
+
+        });
+
+
+    let selected =
+        document.getElementById(page);
+
+    if(selected){
+        selected.classList.add("active");
+    }
+
+
+    document
+        .querySelectorAll(".nav-item")
+        .forEach(function(n){
+
+            n.classList.remove("active");
+
+        });
+
+
+    if(element){
+        element.classList.add("active");
+    }
+
+
+    if(window.innerWidth < 1000){
+
+        document
+            .getElementById("sidebar")
+            .classList.remove("show");
+
+    }
+
+
+    updateDashboard();
+
+}
+
+
+/* =========================
+   MOBILE MENU
+========================= */
+
+function toggleSidebar(){
+
+    document
+        .getElementById("sidebar")
+        .classList.toggle("show");
+
+}
+
+
+/* =========================
+   SAVE BUSINESS
+========================= */
+
+function saveBusiness(){
+
+    let business = {
+
+        id:Date.now(),
+
+        name:
+        document
+        .getElementById("businessName")
+        .value
+        .trim(),
+
+        owner:
+        document
+        .getElementById("ownerName")
+        .value
+        .trim(),
+
+        phone:
+        document
+        .getElementById("businessPhone")
+        .value
+        .trim(),
+
+        category:
+        document
+        .getElementById("businessCategory")
+        .value,
+
+        location:
+        document
+        .getElementById("businessLocation")
+        .value
+        .trim(),
+
+        status:
+        document
+        .getElementById("businessStatus")
+        .value,
+
+        description:
+        document
+        .getElementById("businessDescription")
+        .value
+        .trim(),
+
+        promoted:true,
+
+        promotionPlan:"FREE",
+
+        created:
+        new Date()
+        .toLocaleDateString()
+
+    };
+
+
+    if(
+        !business.name ||
+        !business.owner ||
+        !business.phone ||
+        !business.location
+    ){
+
+        alert(
+            "Please fill Business Name, Owner Name, Phone and Location."
+        );
+
+        return;
+
+    }
+
+
+    businesses.push(business);
+
+
+    localStorage.setItem(
+        "bmtBusinesses",
+        JSON.stringify(businesses)
+    );
+
+
+    document
+        .getElementById("profileBusiness")
+        .innerText =
+        business.name;
+
+
+    document
+        .getElementById("profileOwner")
+        .innerText =
+        "Owner: " + business.owner;
+
+
+    document
+        .getElementById("profilePhone")
+        .innerText =
+        "📞 " + business.phone;
+
+
+    document
+        .getElementById("userName")
+        .innerText =
+        business.owner;
+
+
+    alert(
+        "🎉 Business registered successfully!\n\n" +
+        "Your business is now listed on B.M.T for FREE."
+    );
+
+
+    updateDashboard();
+
+    showPage("dashboard",null);
+
+}
+
+
+/* =========================
+   STATUS
+========================= */
+
+function updateStatus(){
+
+    let status =
+        document
+        .getElementById("statusSelect")
+        .value;
+
+
+    document
+        .getElementById("currentStatus")
+        .innerText =
+        "Current Status: " + status;
+
+}
+
+
+/* =========================
+   DASHBOARD
+========================= */
+
+function updateDashboard(){
+
+    document
+        .getElementById("businessCount")
+        .innerText =
+        businesses.length;
+
+
+    document
+        .getElementById("topCount")
+        .innerText =
+        businesses.filter(
+            function(b){
+                return b.promoted;
+            }
+        ).length;
+
+
+    document
+        .getElementById("promotionCount")
+        .innerText =
+        businesses.length;
+
+
+    renderTopBusinesses();
+
+    renderRecords();
+
+}
+
+
+/* =========================
+   TOP BUSINESS
+========================= */
+
+function renderTopBusinesses(){
+
+    let container =
+        document
+        .getElementById("topBusinesses");
+
+
+    if(businesses.length === 0){
+
+        container.innerHTML = `
+
+            <div class="card">
+
+                <h3>
+                    No businesses yet.
+                </h3>
+
+                <p>
+                    Register the first business
+                    on B.M.T.
+                </p>
+
+                <br>
+
+                <button
+                    class="btn btn-primary"
+                    onclick="showPage('account',null)">
+
+                    Register Business FREE
+
+                </button>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML = "";
+
+
+    businesses.forEach(function(b){
+
+        container.innerHTML += `
+
+            <div class="business-card">
+
+                <div class="business-image">
+                    ⭐
+                </div>
+
+                <div class="business-info">
+
+                    <h3>
+
+                        ${escapeHTML(b.name)}
+
+                        <span class="top-badge">
+                            TOP BUSINESS
+                        </span>
+
+                    </h3>
+
+                    <p class="category">
+                        ${escapeHTML(b.category)}
+                    </p>
+
+                    <p>
+                        📍 ${escapeHTML(b.location)}
+                    </p>
+
+                    <p>
+                        📞 ${escapeHTML(b.phone)}
+                    </p>
+
+                    <span class="status">
+                        🟢 ${escapeHTML(b.status)}
+                    </span>
+
+                    <br><br>
+
+                    <strong>
+                        🚀 FREE LISTING
+                    </strong>
+
+                </div>
+
+            </div>
+
+        `;
+
+    });
+
+}
+
+
+/* =========================
+   RECORDS
+========================= */
+
+function renderRecords(){
+
+    let table =
+        document
+        .getElementById("recordTable");
+
+
+    if(businesses.length === 0){
+
+        table.innerHTML = `
+
+            <tr>
+
+                <td colspan="5">
+
+                    No business records yet.
+
+                </td>
+
+            </tr>
+
+        `;
+
+        return;
+
+    }
+
+
+    table.innerHTML = "";
+
+
+    businesses.forEach(function(b){
+
+        table.innerHTML += `
+
+            <tr>
+
+                <td>
+                    <strong>
+                        ${escapeHTML(b.name)}
+                    </strong>
+                </td>
+
+                <td>
+                    ${escapeHTML(b.category)}
+                </td>
+
+                <td>
+                    ${escapeHTML(b.location)}
+                </td>
+
+                <td>
+                    ${escapeHTML(b.status)}
+                </td>
+
+                <td>
+                    ⭐ FREE
+                </td>
+
+            </tr>
+
+        `;
+
+    });
+
+}
+
+
+/* =========================
+   SEARCH
+========================= */
+
+function searchBusiness(){
+
+    let query =
+        document
+        .getElementById("searchBox")
+        .value
+        .toLowerCase()
+        .trim();
+
+
+    if(!query){
+
+        renderTopBusinesses();
+
+        return;
+
+    }
+
+
+    let results =
+        businesses.filter(function(b){
+
+            return (
+
+                b.name
+                .toLowerCase()
+                .includes(query)
+
+                ||
+
+                b.category
+                .toLowerCase()
+                .includes(query)
+
+                ||
+
+                b.location
+                .toLowerCase()
+                .includes(query)
+
+            );
+
+        });
+
+
+    let container =
+        document
+        .getElementById("topBusinesses");
+
+
+    container.innerHTML = "";
+
+
+    if(results.length === 0){
+
+        container.innerHTML = `
+
+            <div class="card">
+
+                <h3>
+                    No business found.
+                </h3>
+
+                <p>
+                    Try another search.
+                </p>
+
+            </div>
+
+        `;
+
+        showPage("top",null);
+
+        return;
+
+    }
+
+
+    results.forEach(function(b){
+
+        container.innerHTML += `
+
+            <div class="business-card">
+
+                <div class="business-image">
+                    🔎
+                </div>
+
+                <div class="business-info">
+
+                    <h3>
+                        ${escapeHTML(b.name)}
+                    </h3>
+
+                    <p class="category">
+                        ${escapeHTML(b.category)}
+                    </p>
+
+                    <p>
+                        📍 ${escapeHTML(b.location)}
+                    </p>
+
+                    <p>
+                        📞 ${escapeHTML(b.phone)}
+                    </p>
+
+                    <span class="status">
+                        🟢 ${escapeHTML(b.status)}
+                    </span>
+
+                </div>
+
+            </div>
+
+        `;
+
+    });
+
+
+    showPage("top",null);
+
+}
+
+
+/* =========================
+   SECURITY
+========================= */
+
+function escapeHTML(text){
+
+    return String(text || "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+/* =========================
+   START SYSTEM
+========================= */
+
+updateDashboard();
+
+</script>
+
+</body>
+</html>
